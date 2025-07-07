@@ -22,6 +22,17 @@
     <option>Select a City</option>
    </select>
 
+   <p>Didn't find your City ?</p>
+   <button id="toggleCustomCity">Add Custom City</button>
+
+   <div id="customCityForm" style="display: none;">
+    <input type="text" id="customCity" placeholder="City" />
+    <input type="text" id="customCountry" placeholder="Country" />
+    <input type="number" id="customLat" placeholder="Latitude" />
+    <input type="number" id="customLon" placeholder="Longitude" />
+    <button id="addCityBtn">Use This City</button>
+   </div>
+
    <div id="forecastContainer"></div>
 
    <script src="js/main.js"></script>
@@ -32,6 +43,3 @@
 <footer>
     <p class="copyright-text">© Copyright 2023 _______ </p>
 </footer>
-
-<!-- Our codes -->
-<script src="js/main.js"></script>

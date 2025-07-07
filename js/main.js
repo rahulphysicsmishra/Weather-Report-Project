@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("toggleCustomCity").addEventListener("click", () => {
+      const form = document.getElementById("customCityForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    });
     const citySelect = document.getElementById("citySelect");
     const forecastContainer = document.getElementById("forecastContainer");
 
