@@ -22,16 +22,18 @@
     <option>Select a City</option>
    </select>
 
-   <p>Didn't find your City ?</p>
-   <button id="toggleCustomCity">Add Custom City</button>
+   <div class="custom-city-wrapper">
+        <p class="custom-city-info">Didn't find your City ?</p>
+        <button id="toggleCustomCity">Add Custom City</button>
 
-   <div id="customCityForm" style="display: none;">
-    <input type="text" id="customCity" placeholder="City" />
-    <input type="text" id="customCountry" placeholder="Country" />
-    <input type="number" id="customLat" placeholder="Latitude" />
-    <input type="number" id="customLon" placeholder="Longitude" />
-    <button id="addCityBtn">Use This City</button>
-   </div>
+        <div id="customCityForm" style="display: none;">
+            <input type="text" id="customCity" placeholder="City" />
+            <input type="text" id="customCountry" placeholder="Country" />
+            <input type="number" id="customLat" placeholder="Latitude" />
+            <input type="number" id="customLon" placeholder="Longitude" />
+            <button id="addCityBtn">Use This City</button>
+        </div>
+    </div>
 
    <div id="forecastContainer"></div>
 

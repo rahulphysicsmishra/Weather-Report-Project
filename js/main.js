@@ -1,10 +1,14 @@
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+    const citySelect = document.getElementById("citySelect");
+    const forecastContainer = document.getElementById("forecastContainer");
+
     document.getElementById("toggleCustomCity").addEventListener("click", () => {
       const form = document.getElementById("customCityForm");
       form.style.display = form.style.display === "none" ? "block" : "none";
     });
-    const citySelect = document.getElementById("citySelect");
-    const forecastContainer = document.getElementById("forecastContainer");
 
     Papa.parse("city_coordinates.csv", {
     download: true,
@@ -23,8 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     });
 
-    citySelect.addEventListener('change', ()=>{
-        const [lat, lon] = citySelect.value.split(',');
+    function fetchWeatherForLocation(lat, lon, label="") {
         const url = `https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`;
         fetch(url)
             .then(response=>response.json())
@@ -33,11 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 forecastContainer.innerHTML="error fetching data.";
                 console.error(err);
             });
-    });
+    };
 
-    function showForecast(data) {
+
+    function showForecast(data, label="") {
         forecastContainer.innerHTML = "";
-        const forecast = data.dataseries;
+
+        if (label) {
+          const title = document.createElement('h2');
+          title.textContent = `Weather forecast for ${label}`;
+          forecastContainer.appendChild(title);
+        }
+        const forecast = data.dataseries || [];
+        if(forecast.length==0){
+            forecastContainer.innerHTML = "No forecast data available for this location.";
+            return;
+        }
         console.log(forecast);
 
         forecast.slice(0, 7).forEach((day, index) => {
@@ -56,8 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
           forecastContainer.appendChild(card);
           
         })
+    }
 
-    
-  }
+  citySelect.addEventListener('change', ()=>{
+      const [lat, lon] = citySelect.value.split(',');
+      const label = citySelect.options[citySelect.selectedIndex].text;
+      fetchWeatherForLocation(lat, lon, label);
+  })
+  document.getElementById("addCityBtn").addEventListener("click", ()=>{
+      const city = document.getElementById("customCity").value;
+      const country = document.getElementById("customCountry").value;
+      const lat = parseFloat(document.getElementById("customLat").value);
+      const lon = parseFloat(document.getElementById("customLon").value);
+
+      if(!city || !country || !lat || !lon) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const label = `${city}, ${country}`;
+      fetchWeatherForLocation(lat, lon, label);
+    })
 
 });
