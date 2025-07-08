@@ -92,10 +92,10 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchWeatherForLocation(lat, lon, label);
 
       const newCity = {
-        city,
-        country,
         latitude: lat,
-        longitude: lon      }
+        longitude: lon,
+        city,
+        country     }
 
      fetch("/api/add-city", {
       method: "POST",
@@ -106,8 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(async (response) => {
       if (!response.ok) {
-        const msg = await response.text(); // try reading the error message
-        console.log("Server returned error:", msg);
+        const err = await response.json(); // try reading the error message
+        console.log("Server returned error:", err.message);
         return;
       }
       const data = await response.json();
