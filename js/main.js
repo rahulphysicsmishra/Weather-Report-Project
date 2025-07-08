@@ -90,6 +90,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const label = `${city}, ${country}`;
       fetchWeatherForLocation(lat, lon, label);
+
+      const newCity = {
+        city,
+        country,
+        latitude: lat,
+        longitude: lon      }
+
+     fetch("/api/add-city", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newCity)
+    })
+    .then(async (response) => {
+      if (!response.ok) {
+        const msg = await response.text(); // try reading the error message
+        console.log("Server returned error:", msg);
+        return;
+      }
+      const data = await response.json();
+      if (data.status === "ok") {
+        console.log("City added successfully");
+      } else {
+        console.log("Error adding city:", data.message);
+      }
+    })
+    .catch(err => {
+      console.error("Fetch error", err);
+    });
+
+      
+
     })
 
 });
