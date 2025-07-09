@@ -1,4 +1,6 @@
 # 🌦️ Weather Report Project
+![Screenshot from 2025-07-09 12-58-21](https://github.com/user-attachments/assets/8d9c41e1-8761-4c92-bea9-5b04cb27dd9f)
+
 
 A full-stack weather forecast app that allows users to:
 
