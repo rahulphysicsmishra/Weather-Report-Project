@@ -19,7 +19,19 @@ A full-stack weather forecast app that allows users to:
 
 ---
 
-<pre> ## 📁 Project Structure ``` Weather Report Project/ ├── css/ │ └── master.css # App styling ├── images/ │ └── [image files] # Forecast images or backgrounds ├── js/ │ └── main.js # Core logic: fetching and UI ├── city_coordinates.csv # CSV of cities (lat, lon, name, country) ├── index.html # Main frontend page └── server.js # Backend server using Express ``` </pre>
+## 📁 Project Structure 
+```
+Weather Report Project/
+├── css/
+│   └── master.css
+├── images/
+│   └── [image files]
+├── js/
+│   └── main.js
+├── city_coordinates.csv
+├── index.html
+└── server.js
+```
 ---
 
 ## 🛠️ Technologies Used
